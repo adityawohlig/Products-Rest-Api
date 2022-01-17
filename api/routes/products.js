@@ -15,7 +15,7 @@ router.post('/',(req,res, next) =>{
     }
 
     res.status(200).json({
-        message: 'Post request handled successfully by Product route.',
+        message: 'Product Created successfully',
         createdProduct: product
     })
 });
