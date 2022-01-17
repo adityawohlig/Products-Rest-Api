@@ -10,6 +10,30 @@ const morgan = require('morgan');
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
+// CORS Error Handling
+// Specify this before routes
+// ----------------------------------------------------------------
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    // if not all website replace * with domain http:myweb.com etc.
+
+    // tell all headers accepted
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+
+    if(req.method === 'OPTONS'){
+        // browser sends options request first before get or post
+
+        res.header('Access-Control-Allow-Methods', 'GET, POST','PUT', 'PATCH','DELETE');
+        return res.status(200).json({});
+        // empty obj sent
+    }
+    next();
+})
+
+
+
+
 // instead of body-parser
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -37,7 +61,6 @@ app.use((error, req, res, next) => {
     })
 });
 
-// CORS Error Handling
 
 
 // ----------------------------------------------------------------
