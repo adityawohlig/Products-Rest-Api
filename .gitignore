@@ -1,1 +1,3 @@
 node_modules
+.env
+# .env files contain mongodb password and json secret key. While Deploying see the configuration options of deployment platforms.
